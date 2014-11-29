@@ -8,33 +8,21 @@
  * Controller of the angNewsApp
  */
 angular.module('angNewsApp')
-  .controller('PostsCtrl', function ($scope,post) {
+  .controller('PostsCtrl', function ($scope, post, $location) {
     $scope.moduleName = "Posts";
-    $scope.posts = [];
+    $scope.posts = post.all;
+    console.debug($scope.posts)
    	$scope.post = {url: 'http://', title: ''};
 
    	$scope.submitPost = function () {
-   		post.save($scope.post,function(response){
-
-   			$scope.posts[response.name] = $scope.post;
-   			$scope.post = {url: 'http://', title: ''};
-   			console.debug($scope.posts)
-   			
-   		});
-	    
-	    //$scope.posts.push($scope.post);
-	    
+   		post.create($scope.post).then(function (response) {
+	      $scope.post = {url: 'http://', 'title': ''};
+        $location.path('/posts/' + response.name());
+	    });	    
    	};
 
-   	$scope.deletePost = function (postId) {
-   		post.delete({id: postId}, function () {
-			delete $scope.posts[postId];
-		});
-	  	//$scope.posts.splice(postId, 1);
-	};
-
-	$scope.$watch('posts',function(x){
-		console.debug(x)
-	})
+   	$scope.deletePost = function (postData) {   		
+   		post.delete(postData);
+	  };
 	
   });
