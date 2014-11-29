@@ -16,10 +16,15 @@ angular.module('angNewsApp')
 
     	$scope.post = {url: 'http://', title: ''};
 
+
+    	$scope.user = auth.user;
+
 	  	$scope.submitPost = function () {
-		    post.create($scope.post).then(function (response) {
-		      $location.path('/posts/' + response.name());
-		      $scope.post = {url: 'http://', title: ''};
-		    });
+		    $scope.post.creator = $scope.user.profile.username;
+			$scope.post.creatorUID = $scope.user.uid;
+			post.create($scope.post).then(function (response) {
+				$location.path('/posts/' + response.name());
+				$scope.post = {url: 'http://', title: ''};
+			});
 	  	};
   });

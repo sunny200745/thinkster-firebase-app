@@ -8,9 +8,10 @@
  * Controller of the angNewsApp
  */
 angular.module('angNewsApp')
-  .controller('PostsCtrl', function ($scope, post, $location) {
+  .controller('PostsCtrl', function ($scope, post, $location, auth) {
     $scope.moduleName = "Posts";
     $scope.posts = post.all;
+    $scope.user = auth.user;
     console.debug($scope.posts)
    	$scope.post = {url: 'http://', title: ''};
 

@@ -23,12 +23,15 @@ angular.module('angNewsApp')
 		};
 
 		$scope.register = function () {
-			auth.register($scope.user).then(function() {
-			  return auth.login($scope.user).then(function() {
-			    $location.path('/');
-			  });
+			auth.register($scope.user).then(function(user) {
+				return auth.login($scope.user).then(function() {
+				  user.username = $scope.user.username;
+				  return auth.createProfile(user);
+				}).then(function() {
+				  $location.path('/');
+				});
 			}, function(error) {
-			  $scope.error = error.toString();
+				$scope.error = error.toString();
 			});
 		};
   	});
