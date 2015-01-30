@@ -9,6 +9,7 @@
     <!-- build:css(app) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/magic/magic.css">
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -16,21 +17,27 @@
     <!-- endbuild -->
   </head>
   <body ng-app="angNewsApp">
+  <img src="https://c4.staticflickr.com/8/7003/13633850903_0e94327877_b.jpg" style="
+    position: fixed;opacity: .4;width: 100%; top:0">
+
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
     <div class="container" ng-controller="PageCtrl">
-      <div class="header">       
-        <h3 class="text-muted">angNewsApp</h3>
+      <div class="header">   
+
+        <h3 id="heading" class="text-muted" >News Feed Application</h3>
       </div>
 
       <div ng-include="'views/nav.html'"></div>
-      <div class="container" ng-view=""></div>
+      <div class="container content" ng-view=""></div>
 
       <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Xebia Training Team <span class="glyphicon glyphicon-heart"></span></p>
+        <p><img src="https://avatars2.githubusercontent.com/u/3638733?v=3&amp;s=60" width="48" height="48" class="headerAvtarImg" style="border: 2px solid #542;"></span> from Sunny200745 </p>
+
+
       </div>
     </div>
 
@@ -68,6 +75,7 @@
     <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
     <script src="bower_components/mockfirebase/dist/mockfirebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+
     <!-- endbower -->
     <!-- endbuild -->
 
